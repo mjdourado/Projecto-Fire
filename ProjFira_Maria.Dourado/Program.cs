@@ -1,6 +1,6 @@
 ﻿using ProjFira_Maria.Dourado;
-//Configuracoes.BaseDir = new DirectoryInfo("C:\\temp\\Teste");
-//Menus.MenuInicial();
+Configuracoes.IniciarConfiguracoes();
+Iniciar novo = new Iniciar();
+novo.MensagemInicial();
 
-EditarUtilizador novo= new EditarUtilizador();
-novo.Helper();
+
