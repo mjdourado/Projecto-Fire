@@ -19,9 +19,12 @@ internal class ImportarDespesas
         var csv = new CsvReader(reader, config);
         Despesa despesa = new Despesa();
         var despesas = csv.EnumerateRecords(despesa);
-        foreach( var desp in despesas )
+        Console.WriteLine("Para voltar ao menu anterior prima q");
+        string userRequest = Console.ReadLine();
+        if (userRequest == "q")
         {
-
+            Menus menu = new Menus();
+            menu.Utilizador();
         }
     }
 }

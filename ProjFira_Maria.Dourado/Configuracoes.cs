@@ -12,6 +12,8 @@ public static class Configuracoes
     static List<Categoria> categorias = new List<Categoria>();
     static string _directoriaBase = "C:\\Fire\\Admin\\directoriabase.txt";
     static string _categoriasdirectory = "C:\\Fire\\Admin\\categoriasbase.txt";
+    public static string _logUser { get; set; }
+    public static string _logfile { get; set; }
 
     static string categoriasPath;
 

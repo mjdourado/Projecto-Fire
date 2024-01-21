@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ public class Utilizador
 
     public string jsonFile()
     {
-        string jsonfilePath = Path.Combine(dirBase, _nomeUtilizador + ".json");
+        string jsonfilePath = Path.Combine(Configuracoes.BaseDir.FullName, _nomeUtilizador + ".json");
         return jsonfilePath;
     }
     public string GetFilePath()
@@ -139,18 +140,27 @@ public class Utilizador
 
     public void Validar(string username, string password)
     {
-        var credenciais = File.ReadAllLines(GetFilePath());
-
-        if (username == credenciais[0] && password == credenciais[1])
+        var file = new FileInfo(GetFilePath());
+        if (file.Exists)
         {
-            Console.WriteLine("Autenticado!");
+            var credenciais = File.ReadAllLines(GetFilePath());
+            if (username == credenciais[0] && password == credenciais[1])
+            {
+                Console.WriteLine("Autenticado!");
+                DefinirLogUser(username, jsonFile());
+                Menus novo = new Menus();
+                novo.Utilizador();
+            }
+            else
+            {
+                Console.WriteLine("Credenciais incorrectas, tente de novo!");
+                Autenticar();
+            }
+        } else
+        {
+            Console.WriteLine("Utilizador não encontrado. Registe-se ou tente novamente");
             Menus novo = new Menus();
-            novo.Utilizador();
-        }
-        else
-        {
-            Console.WriteLine("Credenciais incorrectas, tente de novo!");
-            Autenticar();
+            novo.MenuGeral();
         }
     }
 
@@ -162,6 +172,12 @@ public class Utilizador
         _password = Console.ReadLine();
         File.Delete(Configuracoes.BaseDir + _nomeUtilizador);
         Console.WriteLine("Utilizador Eliminado com Sucesso");
+    }
+
+    public void DefinirLogUser(string username, string filePath)
+    {
+        username = Configuracoes._logUser;
+        filePath = Configuracoes._logfile;
     }
 }
 

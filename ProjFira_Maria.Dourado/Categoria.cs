@@ -44,7 +44,7 @@ public class Categoria
             }
             categorias.Add(new Categoria { Nome = "Others" });
         }
-        catch (Exception ex) { Console.WriteLine("Erro a processar ficheiro");
+        catch (Exception) { Console.WriteLine("Erro a processar ficheiro");
         categorias = new List<Categoria> { new Categoria { Nome = "Others" } };
             
         }

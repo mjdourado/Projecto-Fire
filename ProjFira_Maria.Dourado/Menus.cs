@@ -58,7 +58,7 @@ internal class Menus
                       * * * * * * * * * * * * * * * * * * * * * * * * 
                       *                                             *
                       *      - Para editar utilizador digite 1      *
-                      *      - Para editar despesas digite 2        *
+                      *      - Para importar despesas digite 2      *
                       *      - Para dashboard digite 3              *
                       *      - Para eliminar conta digite 4         *
                       *      - Para sair digite 5                   *
@@ -80,7 +80,8 @@ internal class Menus
         }
         else if (numero == 3)
         {
-            //DashBoard();
+            DashBoard dashboard = new DashBoard();
+            dashboard.DefinirValores();
         }
         else if (numero == 4)
         {
@@ -96,8 +97,8 @@ internal class Menus
         {
             Console.WriteLine("O número que introduziu não é válido, tente novamente!");
             Console.WriteLine();
+            Utilizador();
         }
-        Utilizador();
     }
 
     public void Administrador()
@@ -130,6 +131,7 @@ internal class Menus
         else if (numero == 2)
         {
             Estatisticas novo = new Estatisticas();
+            novo.Statistics();
         }
         else if (numero == 3)
         {
