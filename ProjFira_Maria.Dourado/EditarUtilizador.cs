@@ -47,6 +47,7 @@ public class EditarUtilizador
         if (userChoice == "fire set-user --help")
         {
             Console.WriteLine(helpMeu);
+            Helper();
         }
         else if (userChoice.StartsWith(fire))
         {
@@ -68,7 +69,7 @@ public class EditarUtilizador
     public void LerParametros(string userChoice)
     {
         string[] parameters = userChoice.Split("--");
-        if (parameters[0] == "fire set-user")
+        if (parameters[0] == "fire set-user ")
         {
             parameters = parameters.Skip(1).ToArray();
             foreach (string param in parameters)
@@ -87,9 +88,8 @@ public class EditarUtilizador
     public void ProcessarComando(string[] comando)
     {
         Utilizador user = new Utilizador();
-        string jsonFile = Path.Combine(user.dirBase, user._nomeUtilizador + ".json");
-        string ficheiroJson = File.ReadAllText(jsonFile);
-        Utilizador utilizador = JsonSerializer.Deserialize<Utilizador>(ficheiroJson);
+        string jsonFile = Path.Combine(Configuracoes._logfile);
+        Utilizador utilizador = JsonSerializer.Deserialize<Utilizador>(File.ReadAllText(jsonFile));
 
         for (int i = 2; i < comando.Length; i += 2)
         {
@@ -125,6 +125,6 @@ public class EditarUtilizador
             }
         }
         string novoJson = JsonSerializer.Serialize(utilizador);
-        File.WriteAllText(user.dirBase, novoJson);
+        File.WriteAllText(Configuracoes._logfile, novoJson);
     }
 }

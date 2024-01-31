@@ -176,8 +176,8 @@ public class Utilizador
 
     public void DefinirLogUser(string username, string filePath)
     {
-        username = Configuracoes._logUser;
-        filePath = Configuracoes._logfile;
+        Configuracoes._logUser = username;
+        Configuracoes._logfile = filePath;
     }
 }
 

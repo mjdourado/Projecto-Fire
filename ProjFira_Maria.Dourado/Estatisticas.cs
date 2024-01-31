@@ -23,7 +23,7 @@ public class Estatisticas
     {
         Console.WriteLine("Escreva o nome do utilizador de quem deseja ver a estatísticas");
         string statUser = Console.ReadLine();
-        string fileUser = Configuracoes.BaseDir.FullName + "statUser.json";
+        string fileUser = Configuracoes.BaseDir.FullName + "\\" + Configuracoes._logUser + statUser + ".json";
         var userFile = File.ReadAllText(fileUser);
         var userJson = JsonSerializer.Deserialize<Utilizador>(userFile);
 
